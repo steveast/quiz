@@ -68,14 +68,13 @@ export const MainPage: FC = () => {
       form.setSubmitting(true);
       mainButton.onClick(() => {
         const body = new FormData();
-        body.append('q1', form.values.q1 as any);
-        body.append('q2', form.values.q2 as any);
-        body.append('q3', form.values.q3 as any);
+        body.append('data', JSON.stringify(form.values));
+        body.append('chat_id', String(initData.user()!.id));
         fetch('https://dashboard.fstrk.io/api/pages/quiz/in-bot/5306b774-7c17-4e0e-aa18-505177447ede/submit/', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'content-type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
           },
           body,
         }).then(() => {
