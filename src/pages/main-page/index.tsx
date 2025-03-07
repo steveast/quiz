@@ -4,7 +4,7 @@ import { Page } from '@/components/Page.tsx';
 import { Banner, Modal, Placeholder, Section } from '@telegram-apps/telegram-ui';
 import { useForm } from '@mantine/form';
 import { Radio } from '@mantine/core';
-import { initData, mainButton } from '@telegram-apps/sdk-react';
+import { initData, mainButton, miniApp } from '@telegram-apps/sdk-react';
 
 
 export const MainPage: FC = () => {
@@ -86,7 +86,7 @@ export const MainPage: FC = () => {
           }),
         }).then(() => {
           setFinish(true);
-          // miniApp.close();
+          miniApp.close();
         })
       });
     }
