@@ -68,13 +68,20 @@ export const MainPage: FC = () => {
       form.setSubmitting(true);
       mainButton.onClick(() => {
         const body = new FormData();
-        body.append('data', JSON.stringify(form.values));
-        body.append('chat_id', String(initData.user()!.id));
-        fetch('https://dashboard.fstrk.io/api/pages/quiz/in-bot/5306b774-7c17-4e0e-aa18-505177447ede/submit/', {
+        body.append('chat', JSON.stringify({ telegram_id: initData.user()!.id }));
+        body.append('content', JSON.stringify({
+          "type": "NODE",
+          "node": {
+            "name": "Прошел квиз"
+          },
+          "get_params": JSON.stringify(form.values),
+        }));
+        fetch('https://dashboard.fstrk.io/api/partners/push-messages/', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json',
+            'bot-key': '337e0159-571c-4bee-8952-399121a86153',
           },
           body,
         }).then(() => {
