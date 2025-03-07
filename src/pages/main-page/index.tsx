@@ -80,7 +80,7 @@ export const MainPage: FC = () => {
           body,
         }).then(() => {
           setFinish(true);
-          miniApp.close();
+          // miniApp.close();
         })
       });
     }
