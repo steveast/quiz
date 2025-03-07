@@ -81,7 +81,7 @@ export const MainPage: FC = () => {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'bot-key': '337e0159-571c-4bee-8952-399121a86153',
+            'bot-key': '5306b774-7c17-4e0e-aa18-505177447ede',
           },
           body,
         }).then(() => {
