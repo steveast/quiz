@@ -71,7 +71,7 @@ export const MainPage: FC = () => {
         body.append('q1', form.values.q1 as any);
         body.append('q2', form.values.q2 as any);
         body.append('q3', form.values.q3 as any);
-        fetch('https://dashboard.fstrk.io/api/chat-center/settings/', {
+        fetch('https://dashboard.fstrk.io/api/pages/quiz/in-bot/5306b774-7c17-4e0e-aa18-505177447ede/submit/', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
