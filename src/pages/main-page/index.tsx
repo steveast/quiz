@@ -70,11 +70,11 @@ export const MainPage: FC = () => {
         const body = new FormData();
         body.append('chat', JSON.stringify({ telegram_id: initData.user()!.id }));
         body.append('content', JSON.stringify({
-          "type": "NODE",
-          "node": {
-            "name": "Прошел квиз"
+          type: "NODE",
+          node: {
+            name: "Прошел квиз"
           },
-          "get_params": JSON.stringify(form.values),
+          get_params: JSON.stringify(form.values),
         }));
         fetch('https://dashboard.fstrk.io/api/partners/push-messages/', {
           method: 'POST',
