@@ -75,12 +75,14 @@ export const MainPage: FC = () => {
             'bot-key': '5306b774-7c17-4e0e-aa18-505177447ede',
           },
           body: JSON.stringify({
-            telegram_id: initData.user()!.id,
-            type: "NODE",
-            node: {
-              name: "Прошел квиз"
-            },
-            get_params: JSON.stringify(form.values),
+            chat: { telegram_id: initData.user()!.id, },
+            content: {
+              type: "NODE",
+              node: {
+                name: "Прошел квиз"
+              },
+              get_params: form.values,
+            }
           }),
         }).then(() => {
           setFinish(true);
