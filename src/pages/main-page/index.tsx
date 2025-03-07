@@ -67,15 +67,6 @@ export const MainPage: FC = () => {
       mainButton.offClick(stepIncrease);
       form.setSubmitting(true);
       mainButton.onClick(() => {
-        const body = new FormData();
-        body.append('chat', JSON.stringify({ telegram_id: initData.user()!.id }));
-        body.append('content', JSON.stringify({
-          type: "NODE",
-          node: {
-            name: "Прошел квиз"
-          },
-          get_params: JSON.stringify(form.values),
-        }));
         fetch('https://dashboard.fstrk.io/api/partners/push-messages/', {
           method: 'POST',
           headers: {
@@ -83,7 +74,14 @@ export const MainPage: FC = () => {
             'Content-Type': 'application/json',
             'bot-key': '5306b774-7c17-4e0e-aa18-505177447ede',
           },
-          body,
+          body: JSON.stringify({
+            telegram_id: initData.user()!.id,
+            type: "NODE",
+            node: {
+              name: "Прошел квиз"
+            },
+            get_params: JSON.stringify(form.values),
+          }),
         }).then(() => {
           setFinish(true);
           // miniApp.close();
