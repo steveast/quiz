@@ -1,10 +1,11 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { Page } from '@/components/Page.tsx';
-import { Banner, Modal, Placeholder, Section } from '@telegram-apps/telegram-ui';
+import { Banner, Placeholder, Section } from '@telegram-apps/telegram-ui';
 import { useForm } from '@mantine/form';
 import { Radio } from '@mantine/core';
 import { initData, mainButton, miniApp } from '@telegram-apps/sdk-react';
+import { Navigate } from 'react-router-dom';
 
 
 export const MainPage: FC = () => {
@@ -93,153 +94,136 @@ export const MainPage: FC = () => {
     }
   }, [step]);
   
+  if (user?.allowsWriteToPm) {
+    return <Navigate to="/allows-write" replace />;
+  }
+  
   return (
     <Page back={false}>
-      {user?.allowsWriteToPm && (
-        <form
-          onSubmit={form.onSubmit((values) => {
-            console.log(values);
-          })}
-        >
-          <Section header="Вопрос 1" style={step === 0 ? undefined : sectionStyle}>
-            <Banner
-              header="Кого Колобок встретил вторым?"
-              subheader="Выберите правильный ответ"
-            >
-              <Radio.Group
-                name="q1"
-                withAsterisk
-              >
-                <Radio
-                  label="Медведь"
-                  value="Медведь"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Заяц"
-                  value="Заяц"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Лиса"
-                  value="Лиса"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Волк"
-                  value="Волк"
-                  mb="md"
-                  onClick={enableButton}
-                />
-              </Radio.Group>
-            </Banner>
-          </Section>
-          
-          <Section header="Вопрос 2" style={step === 1 ? undefined : sectionStyle}>
-            <Banner
-              header="Какой ракеты нет на вооружении России?"
-              subheader="Выберите правильный ответ"
-            >
-              <Radio.Group
-                name="q2"
-                withAsterisk
-              >
-                <Radio
-                  label="Тополь"
-                  value="Тополь"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Багульник"
-                  value="Багульник"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Верба"
-                  value="Верба"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Баобаб"
-                  value="Баобаб"
-                  mb="md"
-                  onClick={enableButton}
-                />
-              </Radio.Group>
-            </Banner>
-          </Section>
-          
-          <Section header="Вопрос 3" style={step === 2 ? undefined : sectionStyle}>
-            <Banner
-              header="Что измеряется в м/с²?"
-              subheader="Выберите правильный ответ"
-            >
-              <Radio.Group
-                name="q3"
-                withAsterisk
-              >
-                <Radio
-                  label="Угловая скорость"
-                  value="Угловая скорость"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Ускорение"
-                  value="Ускорение"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Скорость света"
-                  value="Скорость света"
-                  mb="md"
-                  onClick={enableButton}
-                />
-                <Radio
-                  label="Сила"
-                  value="Сила"
-                  mb="md"
-                  onClick={enableButton}
-                />
-              </Radio.Group>
-            </Banner>
-          </Section>
-          {step > 2 && (
-            <Placeholder
-              header="Опрос завершён!"
-              description={isFinished ? 'Данные отправлены, спасибо!' : 'Отправьте данные боту'}
-            >
-              <PlaceholderImage />
-            </Placeholder>
-          )}
-        </form>
-      ) || (
-        <Modal
-          open
-        >
-          <Placeholder
-            description="Необходимо подписаться на бота чтобы продолжить."
-            header="Quiz: пройти опрос"
+      <form
+        onSubmit={form.onSubmit((values) => {
+          console.log(values);
+        })}
+      >
+        <Section header="Вопрос 1" style={step === 0 ? undefined : sectionStyle}>
+          <Banner
+            header="Кого Колобок встретил вторым?"
+            subheader="Выберите правильный ответ"
           >
-            <img
-              alt="Telegram sticker"
-              src="https://xelene.me/telegram.gif"
-              style={{
-                display: 'block',
-                height: '144px',
-                width: '144px'
-              }}
-            />
+            <Radio.Group
+              name="q1"
+              withAsterisk
+            >
+              <Radio
+                label="Медведь"
+                value="Медведь"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Заяц"
+                value="Заяц"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Лиса"
+                value="Лиса"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Волк"
+                value="Волк"
+                mb="md"
+                onClick={enableButton}
+              />
+            </Radio.Group>
+          </Banner>
+        </Section>
+        
+        <Section header="Вопрос 2" style={step === 1 ? undefined : sectionStyle}>
+          <Banner
+            header="Какой ракеты нет на вооружении России?"
+            subheader="Выберите правильный ответ"
+          >
+            <Radio.Group
+              name="q2"
+              withAsterisk
+            >
+              <Radio
+                label="Тополь"
+                value="Тополь"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Багульник"
+                value="Багульник"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Верба"
+                value="Верба"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Баобаб"
+                value="Баобаб"
+                mb="md"
+                onClick={enableButton}
+              />
+            </Radio.Group>
+          </Banner>
+        </Section>
+        
+        <Section header="Вопрос 3" style={step === 2 ? undefined : sectionStyle}>
+          <Banner
+            header="Что измеряется в м/с²?"
+            subheader="Выберите правильный ответ"
+          >
+            <Radio.Group
+              name="q3"
+              withAsterisk
+            >
+              <Radio
+                label="Угловая скорость"
+                value="Угловая скорость"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Ускорение"
+                value="Ускорение"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Скорость света"
+                value="Скорость света"
+                mb="md"
+                onClick={enableButton}
+              />
+              <Radio
+                label="Сила"
+                value="Сила"
+                mb="md"
+                onClick={enableButton}
+              />
+            </Radio.Group>
+          </Banner>
+        </Section>
+        {step > 2 && (
+          <Placeholder
+            header="Опрос завершён!"
+            description={isFinished ? 'Данные отправлены, спасибо!' : 'Отправьте данные боту'}
+          >
+            <PlaceholderImage />
           </Placeholder>
-        </Modal>
-      )}
+        )}
+      </form>
     </Page>
   );
 };

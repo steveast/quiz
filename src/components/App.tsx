@@ -1,9 +1,8 @@
-import { useLaunchParams, miniApp, useSignal } from '@telegram-apps/sdk-react';
+import { miniApp, useLaunchParams, useSignal } from '@telegram-apps/sdk-react';
 import { AppRoot } from '@telegram-apps/telegram-ui';
-import { Navigate, Route, Routes, HashRouter } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { routes } from '@/navigation/routes.tsx';
-import { useEffect } from 'react';
 
 export function App() {
   const lp = useLaunchParams();
@@ -14,15 +13,9 @@ export function App() {
       const data = atob(lp.startParam as string);
       console.log(JSON.parse(data));
     } catch (e) {
-    
+      console.log(e);
     }
   }
-  
-  useEffect(() => {
-    if (!lp.initData?.user?.allowsWriteToPm) {
-    
-    }
-  }, []);
 
   return (
     <AppRoot
