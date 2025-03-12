@@ -1,8 +1,8 @@
 export default class Sender {
   private eventType: string;
-  private eventData: Record<string, any>;
+  private eventData?: Record<string, any>;
   
-  constructor(eventType: string, eventData: Record<string, any>) {
+  constructor(eventType: string, eventData?: Record<string, any>) {
     this.eventType = eventType;
     this.eventData = eventData;
   }
