@@ -92,8 +92,9 @@ export const MainPage: FC = () => {
       });
     }
   }, [step]);
+  console.log(user);
   
-  if (user?.allowsWriteToPm) {
+  if (!user?.allowsWriteToPm) {
     return <Navigate to="/allows-write" replace />;
   }
   

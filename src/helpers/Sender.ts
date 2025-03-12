@@ -12,7 +12,7 @@ export default class Sender {
       eventType: this.eventType,
       eventData:  this.eventData,
     });
-    window.parent.postMessage(data, window.location.origin);
+    window.parent.postMessage(data, '*'); // window.location.origin
     return this;
   }
 }
