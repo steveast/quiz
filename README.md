@@ -1,4 +1,5 @@
 Run server:
 
-    lt -s fstrk-quiz -p 5173
+    npm run dev
+    npm run dev:https
 

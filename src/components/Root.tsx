@@ -1,8 +1,5 @@
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
-
 import { App } from '@/components/App.tsx';
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
-import { publicUrl } from '@/helpers/publicUrl.ts';
 import { MantineProvider } from '@mantine/core';
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
@@ -25,13 +22,9 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 export function Root() {
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
-      <TonConnectUIProvider
-        manifestUrl={publicUrl('tonconnect-manifest.json')}
-      >
-        <MantineProvider>
-          <App/>
-        </MantineProvider>
-      </TonConnectUIProvider>
+      <MantineProvider>
+        <App/>
+      </MantineProvider>
     </ErrorBoundary>
   );
 }

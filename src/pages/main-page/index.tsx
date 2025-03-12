@@ -56,6 +56,7 @@ export const MainPage: FC = () => {
       text: 'Продолжить'
     });
     mainButton.onClick(stepIncrease);
+    
   }, []);
   
   useEffect(() => {
