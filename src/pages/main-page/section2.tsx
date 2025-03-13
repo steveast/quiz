@@ -17,7 +17,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
   return (
     <Box>
       <Section header="Вопрос 1" style={step === 0 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q1.jpg" />
+        <Image src="/quiz/questions/q1.jpg" />
         <Banner
           style={{ border: 'none' }}
           header="Как Сильвестр НЕ называл Гену в сериале 'СашаТаня'?"
@@ -55,7 +55,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
         </Banner>
       </Section>
       <Section header="Вопрос 2" style={step === 1 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q2.jpg" />
+        <Image src="/quiz/questions/q2.jpg" />
         <Banner
           header={'В сериале "Мир! Дружба! Жвачка!" главные герои Санька и Женька в угнанной тачке включают радио и поют: "Стоп холодильник, стоп морозильник!". Какой припев у этой песни?'}
           subheader="Выберите правильный ответ"
@@ -93,7 +93,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 3" style={step === 2 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q3.jpg" />
+        <Image src="/quiz/questions/q3.jpg" />
         <Banner
           header={'В какой последовательности происходили события после бокальчика вина, выпитого Катей в сериале "Идеальная семья"?'}
           subheader="Выберите правильный ответ"
@@ -131,7 +131,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 4" style={step === 3 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q4.jpg" />
+        <Image src="/quiz/questions/q4.jpg" />
         <Banner
           header={'Кадр из какого сериала ты видишь?'}
           subheader="Выберите правильный ответ"
@@ -169,7 +169,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 5" style={step === 4 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q5.jpg" />
+        <Image src="/quiz/questions/q5.jpg" />
         <Banner
           header={'В сезоне «Реальные пацаны. Бой за наследство» Колян заплатил Эдику за поцелуй с бомжихой. Сколько?'}
           subheader="Выберите правильный ответ"
@@ -207,7 +207,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 6" style={step === 5 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q6.jpg" />
+        <Image src="/quiz/questions/q6.jpg" />
         <Banner
           header={'Герои какого сериала перед тобой?'}
           subheader="Выберите правильный ответ"
@@ -251,7 +251,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 7" style={step === 6 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q7.jpg" />
+        <Image src="/quiz/questions/q7.jpg" />
         <Banner
           header={'Из какого сериала эта цитата?'}
           subheader="Выберите правильный ответ"
@@ -289,7 +289,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 8" style={step === 7 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q8.jpg" />
+        <Image src="/quiz/questions/q8.jpg" />
         <Banner
           header={'Как называлось агентство детских праздников, в котором работали Гера и Стас в сериале "Патриот"?'}
           subheader="Выберите правильный ответ"
@@ -327,7 +327,7 @@ export const Section2 = ({ step, enableButton }: IProps) => {
       </Section>
       
       <Section header="Вопрос 9" style={step === 8 ? undefined : sectionStyle}>
-        <Image src="/quiz/assets/questions/q9.jpg" />
+        <Image src="/quiz/questions/q9.jpg" />
         <Banner
           header={'Из какого сериала этот предмет?'}
           subheader="Выберите правильный ответ"
