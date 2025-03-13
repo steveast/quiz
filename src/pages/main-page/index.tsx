@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import { IStore } from '@/components/App.tsx';
 import { Section1 } from '@/pages/main-page/section1.tsx';
 import { Section2 } from '@/pages/main-page/section2.tsx';
+import { Section3 } from '@/pages/main-page/section3.tsx';
 
 
 export const MainPage = (props: IStore) => {
@@ -16,9 +17,16 @@ export const MainPage = (props: IStore) => {
       q1: undefined,
       q2: undefined,
       q3: undefined,
+      q4: undefined,
+      q5: undefined,
+      q6: undefined,
+      q7: undefined,
+      q8: undefined,
+      q9: undefined,
     },
   });
   const lp = useLaunchParams();
+  lp.startParam = 'quiz3'; // dev
   const user = props.store.user;
   const [step, setStep] = useState(0);
   const [isFinished, setFinish] = useState(false);
@@ -58,7 +66,11 @@ export const MainPage = (props: IStore) => {
   }, []);
   
   useEffect(() => {
-    if (step === 3 && !form.submitting) {
+    if (
+      (lp.startParam === 'quiz1' && step === 3)
+      || (lp.startParam === 'quiz2' && step === 9)
+      || (lp.startParam === 'quiz3' && step === 1)
+    ) {
       mainButton.setParams({
         isVisible: true,
         text: 'Отправить'
@@ -107,12 +119,13 @@ export const MainPage = (props: IStore) => {
         })}
       >
         {lp.startParam === 'quiz1' && <Section1 step={step} enableButton={enableButton} />}
-        {lp.startParam !== 'quiz2' && <Section2 step={step} enableButton={enableButton} />}
+        {lp.startParam === 'quiz2' && <Section2 step={step} enableButton={enableButton} />}
+        {lp.startParam === 'quiz3' && <Section3 step={step} enableButton={enableButton} />}
         
         {(
           (step > 2 && lp.startParam === 'quiz1')
-          || (step > 8 && lp.startParam === 'quiz2')
-          || (step > 1 && lp.startParam === 'quiz3')
+          || (step > 7 && lp.startParam === 'quiz2')
+          || (step > 0 && lp.startParam === 'quiz3')
         ) && (
           <Placeholder
             header="Опрос завершён!"

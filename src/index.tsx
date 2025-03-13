@@ -14,6 +14,12 @@ import './mockEnv.ts';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 
+declare global {
+  interface Window {
+    TelegramWebviewProxy: any;
+  }
+}
+
 try {
   // Configure all application dependencies.
   init(retrieveLaunchParams().startParam === 'debug' || import.meta.env.DEV);

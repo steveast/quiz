@@ -16,7 +16,7 @@ export function App() {
   const { initData } = retrieveLaunchParams();
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
-  const [store, setStore] = useState({...initData});
+  const [store, setStore] = useState<any>({...initData});
 
   return (
     <AppRoot
@@ -27,7 +27,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<MainPage store={store} setStore={setStore} />} />
           <Route path="/allows-write" element={<AllowsWrite store={store} setStore={setStore} />} />
-          <Route path="/not-found" element={<NotFound store={store} setStore={setStore} />} />
+          <Route path="/not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
       </HashRouter>

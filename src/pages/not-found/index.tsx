@@ -1,5 +1,4 @@
 import React from 'react';
-import { IStore } from '@/components/App.tsx';
 import { Placeholder } from '@telegram-apps/telegram-ui';
 
 export const NotFound = () => {
