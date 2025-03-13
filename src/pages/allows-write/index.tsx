@@ -1,16 +1,32 @@
-import React from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Modal, Placeholder } from '@telegram-apps/telegram-ui';
+import { on } from '@telegram-apps/sdk-react';
+import Sender from '@/helpers/Sender.ts';
+import { Navigate } from 'react-router-dom';
 
-interface IAllowsWriteProps {
-
-}
-
-type IProps = IAllowsWriteProps;
-
-export const AllowsWrite = (props: IProps) => {
-  React.useEffect(() => {
-
+export const AllowsWrite = () => {
+  const [isAllowed, setAllowed] = useState(false);
+  const sender = useMemo(() => new Sender(), []);
+  
+  useEffect(() => {
+    sender.subscribe(
+      on('write_access_requested', ({ status }) => {
+        if (status === 'allowed') {
+          setAllowed(true);
+        }
+      })
+    );
+    sender.send('web_app_request_write_access');
+    
+    return () => {
+      sender.off();
+    };
   }, []);
+  
+  if (isAllowed) {
+    return <Navigate to="/" replace />;
+  }
+  
   return (
     <Modal
       open
