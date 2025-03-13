@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Modal, Placeholder } from '@telegram-apps/telegram-ui';
-import { on } from '@telegram-apps/sdk-react';
+import { mainButton, on } from '@telegram-apps/sdk-react';
 import Sender from '@/helpers/Sender.ts';
 import { Navigate } from 'react-router-dom';
 import { IStore } from '@/components/App.tsx';
@@ -10,18 +10,30 @@ export const AllowsWrite = (props: IStore) => {
   const sender = useMemo(() => new Sender(), []);
   
   useEffect(() => {
+    const clickListener = () => {
+      sender.send('web_app_request_write_access');
+    };
     sender.subscribe(
       on('write_access_requested', ({ status }) => {
         if (status === 'allowed') {
           setAllowed(true);
           props.setStore({ user: { allowsWriteToPm: true } });
+          mainButton.setParams({
+            isVisible: false,
+          });
         }
       })
     );
     sender.send('web_app_request_write_access');
+    mainButton.setParams({
+      isVisible: true,
+      text: 'Получить разрешение'
+    });
+    mainButton.onClick(clickListener);
     
     return () => {
       sender.off();
+      mainButton.offClick(clickListener);
     };
   }, []);
   
