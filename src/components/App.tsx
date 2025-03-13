@@ -5,6 +5,7 @@ import { MainPage } from '@/pages/main-page';
 import { AllowsWrite } from '@/pages/allows-write';
 import { useState } from 'react';
 import { InitData } from '@telegram-apps/types/src/init-data.ts';
+import { NotFound } from '@/pages/not-found';
 
 export interface IStore {
   store: InitData;
@@ -16,15 +17,6 @@ export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
   const [store, setStore] = useState({...initData});
-  
-  if (lp.startParam) {
-    try {
-      const data = atob(lp.startParam as string);
-      console.log(JSON.parse(data));
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   return (
     <AppRoot
@@ -35,6 +27,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<MainPage store={store} setStore={setStore} />} />
           <Route path="/allows-write" element={<AllowsWrite store={store} setStore={setStore} />} />
+          <Route path="/not-found" element={<NotFound store={store} setStore={setStore} />} />
           <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
       </HashRouter>

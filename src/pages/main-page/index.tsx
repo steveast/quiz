@@ -1,12 +1,13 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { Page } from '@/components/Page.tsx';
-import { Banner, Placeholder, Section } from '@telegram-apps/telegram-ui';
+import { Placeholder } from '@telegram-apps/telegram-ui';
 import { useForm } from '@mantine/form';
-import { Radio } from '@mantine/core';
-import { mainButton, miniApp } from '@telegram-apps/sdk-react';
+import { mainButton, miniApp, useLaunchParams } from '@telegram-apps/sdk-react';
 import { Navigate } from 'react-router-dom';
 import { IStore } from '@/components/App.tsx';
+import { Section1 } from '@/pages/main-page/section1.tsx';
+import { Section2 } from '@/pages/main-page/section2.tsx';
 
 
 export const MainPage: FC = (props: IStore) => {
@@ -18,6 +19,7 @@ export const MainPage: FC = (props: IStore) => {
       q3: undefined,
     },
   });
+  const lp = useLaunchParams();
   const user = props.store.user;
   const [step, setStep] = useState(0);
   const [isFinished, setFinish] = useState(false);
@@ -27,11 +29,7 @@ export const MainPage: FC = (props: IStore) => {
       isVisible: true,
     });
   }
-  const sectionStyle = {
-    opacity: 0,
-    height: 0,
-    overflow: 'hidden',
-  }
+  
   const PlaceholderImage = () => (
     <img
       alt="Telegram sticker"
@@ -98,6 +96,10 @@ export const MainPage: FC = (props: IStore) => {
     return <Navigate to="/allows-write" replace />;
   }
   
+  if (!lp.startParam) {
+    return <Navigate to="/not-found" replace />;
+  }
+  
   return (
     <Page back={false}>
       <form
@@ -105,117 +107,15 @@ export const MainPage: FC = (props: IStore) => {
           console.log(values);
         })}
       >
-        <Section header="Вопрос 1" style={step === 0 ? undefined : sectionStyle}>
-          <Banner
-            header="Кого Колобок встретил вторым?"
-            subheader="Выберите правильный ответ"
-          >
-            <Radio.Group
-              name="q1"
-              withAsterisk
-            >
-              <Radio
-                label="Медведь"
-                value="Медведь"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Заяц"
-                value="Заяц"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Лиса"
-                value="Лиса"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Волк"
-                value="Волк"
-                mb="md"
-                onClick={enableButton}
-              />
-            </Radio.Group>
-          </Banner>
-        </Section>
+        {lp.startParam === 'quiz1' && <Section1 step={step} enableButton={enableButton} />}
+        {lp.startParam !== 'quiz2' && <Section2 step={step} enableButton={enableButton} />}
         
-        <Section header="Вопрос 2" style={step === 1 ? undefined : sectionStyle}>
-          <Banner
-            header="Какой ракеты нет на вооружении России?"
-            subheader="Выберите правильный ответ"
-          >
-            <Radio.Group
-              name="q2"
-              withAsterisk
-            >
-              <Radio
-                label="Тополь"
-                value="Тополь"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Багульник"
-                value="Багульник"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Верба"
-                value="Верба"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Баобаб"
-                value="Баобаб"
-                mb="md"
-                onClick={enableButton}
-              />
-            </Radio.Group>
-          </Banner>
-        </Section>
         
-        <Section header="Вопрос 3" style={step === 2 ? undefined : sectionStyle}>
-          <Banner
-            header="Что измеряется в м/с²?"
-            subheader="Выберите правильный ответ"
-          >
-            <Radio.Group
-              name="q3"
-              withAsterisk
-            >
-              <Radio
-                label="Угловая скорость"
-                value="Угловая скорость"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Ускорение"
-                value="Ускорение"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Скорость света"
-                value="Скорость света"
-                mb="md"
-                onClick={enableButton}
-              />
-              <Radio
-                label="Сила"
-                value="Сила"
-                mb="md"
-                onClick={enableButton}
-              />
-            </Radio.Group>
-          </Banner>
-        </Section>
-        {step > 2 && (
+        {(
+          (step > 2 && lp.startParam === 'quiz1')
+          || (step > 8 && lp.startParam === 'quiz2')
+          || (step > 1 && lp.startParam === 'quiz3')
+        ) && (
           <Placeholder
             header="Опрос завершён!"
             description={isFinished ? 'Данные отправлены, спасибо!' : 'Отправьте данные боту'}
