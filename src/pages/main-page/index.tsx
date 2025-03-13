@@ -122,9 +122,9 @@ export const MainPage = (props: IStore) => {
     return <Navigate to="/allows-write" replace />;
   }
   
-  // if (!lp.startParam) {
-  //   return <Navigate to="/not-found" replace />;
-  // }
+  if (!lp.startParam) {
+    return <Navigate to="/not-found" replace />;
+  }
   
   const isComplited = (
     (step > 2 && lp.startParam === 'quiz1')
