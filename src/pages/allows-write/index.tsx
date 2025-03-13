@@ -3,8 +3,9 @@ import { Modal, Placeholder } from '@telegram-apps/telegram-ui';
 import { on } from '@telegram-apps/sdk-react';
 import Sender from '@/helpers/Sender.ts';
 import { Navigate } from 'react-router-dom';
+import { IStore } from '@/components/App.tsx';
 
-export const AllowsWrite = () => {
+export const AllowsWrite = (props: IStore) => {
   const [isAllowed, setAllowed] = useState(false);
   const sender = useMemo(() => new Sender(), []);
   
@@ -13,6 +14,7 @@ export const AllowsWrite = () => {
       on('write_access_requested', ({ status }) => {
         if (status === 'allowed') {
           setAllowed(true);
+          props.setStore({ user: { allowsWriteToPm: true } });
         }
       })
     );

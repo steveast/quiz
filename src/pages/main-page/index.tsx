@@ -4,12 +4,12 @@ import { Page } from '@/components/Page.tsx';
 import { Banner, Placeholder, Section } from '@telegram-apps/telegram-ui';
 import { useForm } from '@mantine/form';
 import { Radio } from '@mantine/core';
-import { mainButton, miniApp, retrieveLaunchParams } from '@telegram-apps/sdk-react';
+import { mainButton, miniApp } from '@telegram-apps/sdk-react';
 import { Navigate } from 'react-router-dom';
+import { IStore } from '@/components/App.tsx';
 
 
-export const MainPage: FC = () => {
-  const { initData } = retrieveLaunchParams();
+export const MainPage: FC = (props: IStore) => {
   const form = useForm({
     mode: 'controlled',
     initialValues: {
@@ -18,7 +18,7 @@ export const MainPage: FC = () => {
       q3: undefined,
     },
   });
-  const user = initData?.user;
+  const user = props.store.user;
   const [step, setStep] = useState(0);
   const [isFinished, setFinish] = useState(false);
   const enableButton = (ev: any) => {
@@ -77,7 +77,7 @@ export const MainPage: FC = () => {
             'bot-key': '5306b774-7c17-4e0e-aa18-505177447ede',
           },
           body: JSON.stringify({
-            chat: { telegram_id: initData!.user()!.id, },
+            chat: { telegram_id: props.store.user!.id, },
             content: {
               type: "NODE",
               node: {
