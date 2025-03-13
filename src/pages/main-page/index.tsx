@@ -28,7 +28,7 @@ export const MainPage = (props: IStore) => {
     },
   });
   const lp = useLaunchParams();
-  lp.startParam = 'quiz3'; // dev
+  // lp.startParam = 'quiz3'; // dev
   const user = props.store.user;
   const [step, setStep] = useState(0);
   const [isFinished, setFinish] = useState(false);
