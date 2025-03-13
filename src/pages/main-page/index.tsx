@@ -38,7 +38,7 @@ export const MainPage = (props: IStore) => {
       isVisible: true,
     });
   };
-  const [sec, setSec] = useState(3);
+  const [sec, setSec] = useState(30);
   
   const PlaceholderImage = () => (
     <img
@@ -105,7 +105,7 @@ export const MainPage = (props: IStore) => {
       });
     }
     if (interval) clearInterval(interval);
-    setSec(3);
+    setSec(30);
     interval = setInterval(() => {
       setSec((sec) => {
         const r = sec - 1;
