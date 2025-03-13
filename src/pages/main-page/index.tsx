@@ -8,8 +8,10 @@ import { IStore } from '@/components/App.tsx';
 import { Section1 } from '@/pages/main-page/section1.tsx';
 import { Section2 } from '@/pages/main-page/section2.tsx';
 import { Section3 } from '@/pages/main-page/section3.tsx';
+import { Badge } from '@mantine/core';
 
 
+let interval: any = 0;
 export const MainPage = (props: IStore) => {
   const form = useForm({
     mode: 'controlled',
@@ -35,7 +37,8 @@ export const MainPage = (props: IStore) => {
     mainButton.setParams({
       isVisible: true,
     });
-  }
+  };
+  const [sec, setSec] = useState(3);
   
   const PlaceholderImage = () => (
     <img
@@ -101,6 +104,18 @@ export const MainPage = (props: IStore) => {
         })
       });
     }
+    if (interval) clearInterval(interval);
+    setSec(3);
+    interval = setInterval(() => {
+      setSec((sec) => {
+        const r = sec - 1;
+        if (!sec) {
+          stepIncrease();
+        }
+        return r;
+      });
+      
+    }, 1000)
   }, [step]);
   
   if (!user?.allowsWriteToPm) {
@@ -111,6 +126,11 @@ export const MainPage = (props: IStore) => {
   //   return <Navigate to="/not-found" replace />;
   // }
   
+  const isComplited = (
+    (step > 2 && lp.startParam === 'quiz1')
+    || (step > 7 && lp.startParam === 'quiz2')
+    || (step > 0 && lp.startParam === 'quiz3')
+  );
   return (
     <Page back={false}>
       <form
@@ -118,15 +138,14 @@ export const MainPage = (props: IStore) => {
           console.log(values);
         })}
       >
+        {!isComplited && (
+          <Badge style={{ position: 'absolute', top: 22, left: 100 }} color="blue" radius="sm">{sec} сек</Badge>
+        )}
         {lp.startParam === 'quiz1' && <Section1 step={step} enableButton={enableButton} />}
         {lp.startParam === 'quiz2' && <Section2 step={step} enableButton={enableButton} />}
         {lp.startParam === 'quiz3' && <Section3 step={step} enableButton={enableButton} />}
         
-        {(
-          (step > 2 && lp.startParam === 'quiz1')
-          || (step > 7 && lp.startParam === 'quiz2')
-          || (step > 0 && lp.startParam === 'quiz3')
-        ) && (
+        {isComplited && (
           <Placeholder
             header="Опрос завершён!"
             description={isFinished ? 'Данные отправлены, спасибо!' : 'Отправьте данные боту'}
