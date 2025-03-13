@@ -17,7 +17,7 @@ export const AllowsWrite = (props: IStore) => {
       on('write_access_requested', ({ status }) => {
         if (status === 'allowed') {
           setAllowed(true);
-          props.setStore({ user: { allowsWriteToPm: true } });
+          props.setStore({ user: { allowsWriteToPm: true } } as any);
           mainButton.setParams({
             isVisible: false,
           });

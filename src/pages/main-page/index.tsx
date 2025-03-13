@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { Page } from '@/components/Page.tsx';
 import { Placeholder } from '@telegram-apps/telegram-ui';
@@ -10,7 +9,7 @@ import { Section1 } from '@/pages/main-page/section1.tsx';
 import { Section2 } from '@/pages/main-page/section2.tsx';
 
 
-export const MainPage: FC = (props: IStore) => {
+export const MainPage = (props: IStore) => {
   const form = useForm({
     mode: 'controlled',
     initialValues: {
@@ -96,9 +95,9 @@ export const MainPage: FC = (props: IStore) => {
     return <Navigate to="/allows-write" replace />;
   }
   
-  if (!lp.startParam) {
-    return <Navigate to="/not-found" replace />;
-  }
+  // if (!lp.startParam) {
+  //   return <Navigate to="/not-found" replace />;
+  // }
   
   return (
     <Page back={false}>
@@ -109,7 +108,6 @@ export const MainPage: FC = (props: IStore) => {
       >
         {lp.startParam === 'quiz1' && <Section1 step={step} enableButton={enableButton} />}
         {lp.startParam !== 'quiz2' && <Section2 step={step} enableButton={enableButton} />}
-        
         
         {(
           (step > 2 && lp.startParam === 'quiz1')

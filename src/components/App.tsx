@@ -4,8 +4,8 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { MainPage } from '@/pages/main-page';
 import { AllowsWrite } from '@/pages/allows-write';
 import { useState } from 'react';
-import { InitData } from '@telegram-apps/types/src/init-data.ts';
 import { NotFound } from '@/pages/not-found';
+import { InitData } from '@telegram-apps/types';
 
 export interface IStore {
   store: InitData;

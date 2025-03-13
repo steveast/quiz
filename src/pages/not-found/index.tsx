@@ -2,13 +2,7 @@ import React from 'react';
 import { IStore } from '@/components/App.tsx';
 import { Placeholder } from '@telegram-apps/telegram-ui';
 
-interface INotFoundProps extends IStore {
-
-}
-
-type IProps = INotFoundProps;
-
-export const NotFound = (props: IProps) => {
+export const NotFound = () => {
   React.useEffect(() => {
 
   }, []);
