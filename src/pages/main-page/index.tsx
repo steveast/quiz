@@ -128,7 +128,7 @@ export const MainPage = (props: IStore) => {
   
   const isComplited = (
     (step > 2 && lp.startParam === 'quiz1')
-    || (step > 7 && lp.startParam === 'quiz2')
+    || (step > 8 && lp.startParam === 'quiz2')
     || (step > 0 && lp.startParam === 'quiz3')
   );
   return (
