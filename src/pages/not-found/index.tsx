@@ -12,7 +12,7 @@ export const NotFound = () => {
     >
       <img
         alt="Telegram sticker"
-        src="https://xelene.me/telegram.gif"
+        src="/quiz/not-found.png"
         style={{
           display: 'block',
           height: '144px',
