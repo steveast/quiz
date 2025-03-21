@@ -8,7 +8,7 @@ import { IStore } from '@/components/App.tsx';
 import { Section1 } from '@/pages/main-page/section1.tsx';
 import { Section2 } from '@/pages/main-page/section2.tsx';
 import { Section3 } from '@/pages/main-page/section3.tsx';
-import { Badge } from '@mantine/core';
+import { Badge, Image } from '@mantine/core';
 
 
 let interval: any = 0;
@@ -39,18 +39,6 @@ export const MainPage = (props: IStore) => {
     });
   };
   const [sec, setSec] = useState(30);
-  
-  const PlaceholderImage = () => (
-    <img
-      alt="Telegram sticker"
-      src="https://xelene.me/telegram.gif"
-      style={{
-        display: 'block',
-        width: 144,
-        height: 144,
-      }}
-    />
-  );
   const stepIncrease = () => {
     setStep((prev) => prev + 1);
     mainButton.setParams({
@@ -147,10 +135,10 @@ export const MainPage = (props: IStore) => {
         
         {isComplited && (
           <Placeholder
-            header="Опрос завершён!"
-            description={isFinished ? 'Данные отправлены, спасибо!' : 'Отправьте данные боту'}
+            header="Спасибо за участие!"
+            description={isFinished ? 'Данные отправлены, спасибо!' : 'Жми кнопку «Отправить» и узнай свой результат 😉'}
           >
-            <PlaceholderImage />
+            <Image src="/quiz/successful.png" w={200} />
           </Placeholder>
         )}
       </form>

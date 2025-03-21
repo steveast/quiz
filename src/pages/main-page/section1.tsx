@@ -54,7 +54,7 @@ export const Section1 = ({ step, enableButton }: IProps) => {
       </Section>
       <Section header="Вопрос 2" style={step === 1 ? undefined : sectionStyle}>
         <Banner
-          header="Какой ракеты нет на вооружении России?"
+          header="Что добавляют в щи по старым русским рецептам?"
           subheader="Выберите правильный ответ"
         >
           <Radio.Group
@@ -62,26 +62,26 @@ export const Section1 = ({ step, enableButton }: IProps) => {
             withAsterisk
           >
             <Radio
-              label="Тополь"
-              value="Тополь"
+              label="Простокваша"
+              value="Простокваша"
               mb="md"
               onClick={enableButton}
             />
             <Radio
-              label="Багульник"
-              value="Багульник"
+              label="Морковь"
+              value="Морковь"
               mb="md"
               onClick={enableButton}
             />
             <Radio
-              label="Верба"
-              value="Верба"
+              label="Свёкла"
+              value="Свёкла"
               mb="md"
               onClick={enableButton}
             />
             <Radio
-              label="Баобаб"
-              value="Баобаб"
+              label="Квас"
+              value="Квас"
               mb="md"
               onClick={enableButton}
             />
