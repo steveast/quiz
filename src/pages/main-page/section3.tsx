@@ -17,7 +17,16 @@ export const Section3 = ({ step, enableButton }: IProps) => {
   return (
     <Box>
       <Section header="Вопрос 1" style={step === 0 ? undefined : sectionStyle}>
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/Fy29jBqckCo?si=ZqXcWmoZpJnnhHhs" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+        <iframe
+          width="100%"
+          height="315"
+          src="https://rutube.ru/play/embed/2fee7a6a37dfe70a95a48bff59d140df"
+          frameBorder="0"
+          allow="clipboard-write; autoplay"
+          webkitAllowFullScreen
+          mozallowfullscreen
+          allowFullScreen
+        ></iframe>
         <Banner
           style={{ border: 'none' }}
           header="Какой жанр у песни?"
