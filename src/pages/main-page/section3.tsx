@@ -23,8 +23,6 @@ export const Section3 = ({ step, enableButton }: IProps) => {
           src="https://rutube.ru/play/embed/2fee7a6a37dfe70a95a48bff59d140df"
           frameBorder="0"
           allow="clipboard-write; autoplay"
-          webkitAllowFullScreen
-          mozallowfullscreen
           allowFullScreen
         ></iframe>
         <Banner
